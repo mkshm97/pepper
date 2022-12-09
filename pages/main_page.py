@@ -7,6 +7,7 @@ class MainPage(BasePage):
     def catch_deer(self):
         login = 'cor4agin.maksim@yandex.ru'
         password = '26091997max'
+        deer_counter = 0
         self.browser.find_element(*MainPageLocators.LOGIN_BUTTON).click()
         time.sleep(2)
         self.browser.find_element(*MainPageLocators.LOGIN).send_keys(login)
@@ -15,8 +16,10 @@ class MainPage(BasePage):
         time.sleep(5)
         while True:
             if self.is_appeared(*MainPageLocators.DEER):
+                deer_counter = deer_counter + 1
                 time.sleep(2)
                 self.browser.find_element(*MainPageLocators.DEER).click()
+                print(deer_counter)
                 time.sleep(5)
                 self.refresh_window()
             else:
